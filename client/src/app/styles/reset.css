@@ -1,0 +1,72 @@
+/* Удаляем все отступы и границы */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Исправляем линии высоты в заголовках и текстовых элементах */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+/* Устанавливаем базовые настройки для body */
+body {
+  min-height: 100vh;
+  line-height: 1;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Убираем стандартные стили для списков */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Упрощаем работу с изображениями */
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  background: none;
+}
+
+/* Удаляем подчеркивание для ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Убираем анимации для людей, которые их отключили */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
