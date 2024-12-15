@@ -1,0 +1,6 @@
+.root {
+	display: flex;
+	align-items: center;
+	height: var(--header-height);
+	padding: 0 20px;
+}

@@ -1,10 +1,13 @@
 import './styles/index.css'
 
+import { BrowserRouter } from 'react-router-dom';
+import { Router } from './router';
+
 function App() {
 	return (
-		<>
-			Hello!
-		</>
+		<BrowserRouter>
+			<Router />
+		</BrowserRouter>
 	)
 }
 
