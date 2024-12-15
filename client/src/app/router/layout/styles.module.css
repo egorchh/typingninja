@@ -7,3 +7,11 @@
 	font-weight: var(--font-weight-medium);
 	line-height: var(--line-height-normal);
 }
+
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px 20px 40px;
+	height: calc(100vh - var(--header-height) - var(--footer-height));
+}
