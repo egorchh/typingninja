@@ -1,0 +1,9 @@
+.root {
+	min-height: 100vh;
+	color: var(--default-theme-text);
+	background-color: var(--default-theme-background);
+	font-family: var(--font-primary);
+  	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-height-normal);
+}
