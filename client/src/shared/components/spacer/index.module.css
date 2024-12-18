@@ -1,0 +1,13 @@
+.flex {
+	display: flex;
+}
+
+/* width */
+
+.fullWidth {
+	width: 100%;
+}
+
+.fullHeight {
+	height: 100%;
+}

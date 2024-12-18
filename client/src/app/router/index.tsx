@@ -10,5 +10,5 @@ export const Router = () => {
 				<Route index element={<KeyboardPage />} />
 			</Route>
 		</Routes>
-	)
-}
+	);
+};

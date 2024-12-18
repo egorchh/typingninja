@@ -1,4 +1,8 @@
 .root {
+	position: relative;
+}
+
+.text {
 	display: flex;
 	flex-wrap: wrap;
 	font-size: var(--font-size-3xl);
@@ -6,3 +10,4 @@
 	text-align: left;
 	max-width: 1200px;
 }
+

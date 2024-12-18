@@ -1,10 +1,10 @@
 export const splitTextIntoWords = (text: string) => {
-    return text.match(/\S+|\s+/g) || [];
-}
+	return text.match(/\S+|\s+/g) || [];
+};
 
 export const splitWordsIntoSymbols = (word: string) => {
 	return word.split('');
-}
+};
 
 export const calculateWordStarts = (words: string[]) => {
 	const wordStarts: number[] = [];

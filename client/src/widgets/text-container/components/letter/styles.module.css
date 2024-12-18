@@ -4,11 +4,11 @@
 }
 
 .correct {
-    color: #10B981;
+    color: var(--default-theme-correct-word);
 }
 
 .incorrect {
-    color: #EF4444;
+    color: var(--default-theme-incorrect-word);
     text-decoration: underline;
 }
 

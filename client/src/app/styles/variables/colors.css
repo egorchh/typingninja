@@ -2,4 +2,7 @@
 	/* Default theme */
 	--default-theme-background: #191818;
 	--default-theme-text: white;
+
+	--default-theme-correct-word: #04e061;
+	--default-theme-incorrect-word: #ff6163;
 }

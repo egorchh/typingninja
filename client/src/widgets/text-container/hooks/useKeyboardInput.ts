@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, RefObject } from 'react';
 
-export const useKeyboardInput = () => {
+export const useKeyboardInput = (timerRef: RefObject<NodeJS.Timeout | null>) => {
 	const [caretPosition, setCaretPosition] = useState<number>(0);
 	const [typedChars, setTypedChars] = useState<string[]>([]);
 
@@ -11,15 +11,15 @@ export const useKeyboardInput = () => {
 			}
 
 			if (event.key.length === 1) {
-				setTypedChars(prev => [...prev, event.key])
-				setCaretPosition(prev => prev + 1)
+				setTypedChars(prev => [...prev, event.key]);
+				setCaretPosition(prev => prev + 1);
 			}
 
 			if (event.key === 'Backspace' && caretPosition > 0) {
-				setTypedChars(prev => prev.slice(0, -1))
-				setCaretPosition(prev => prev - 1)
+				setTypedChars(prev => prev.slice(0, -1));
+				setCaretPosition(prev => prev - 1);
 			}
-		}
+		};
 
 		window.addEventListener('keydown', handleKeyDown);
 		return () => window.removeEventListener('keydown', handleKeyDown);
@@ -27,6 +27,6 @@ export const useKeyboardInput = () => {
 
 	return useMemo(() => ({
 		caretPosition,
-		typedChars,
+		typedChars
 	}), [caretPosition, typedChars]);
 }; 

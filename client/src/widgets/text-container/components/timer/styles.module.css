@@ -1,0 +1,14 @@
+.root {
+	position: absolute;
+	font-size: var(--font-size-3xl);
+	font-weight: var(--font-weight-bold);
+}
+
+.top {
+	top: -50px;
+}
+
+.left {
+	top: 1px;
+	left: -60px;
+}

@@ -12,5 +12,5 @@ export const Layout = () => {
 			</div>
 			<Footer />
 		</div>
-	)
-}
+	);
+};

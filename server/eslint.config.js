@@ -10,15 +10,27 @@ export default [
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
-				project: './tsconfig.json'
+				project: './tsconfig.json',
+				ecmaVersion: 'latest',
+				sourceType: 'module'
 			},
-			globals: globals.node
+			globals: {
+				...globals.node
+			}
 		},
 		plugins: {
 			'@typescript-eslint': tseslint
 		},
 		rules: {
 			...js.configs.recommended.rules,
+			...tseslint.configs.recommended.rules,
+			'@typescript-eslint/no-explicit-any': 'error',
+			'@typescript-eslint/explicit-function-return-type': 'error',
+			'@typescript-eslint/no-unused-vars': 'error',
+			'@typescript-eslint/no-non-null-assertion': 'error',
+			'semi': ['error', 'always'],
+			'quotes': ['error', 'single'],
+			'indent': ['error', 'tab']
 		}
 	}
 ]

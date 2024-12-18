@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { splitWordsIntoSymbols } from '../../utils';
 import { LetterStatus } from '../../types';
+import { splitWordsIntoSymbols } from '../../utils';
 import { Letter } from '../letter';
 import styles from './styles.module.css';
 
@@ -16,10 +16,10 @@ export const Word = memo(({ word, typedChars, caretPosition }: Props) => {
 	return (
 		<div className={styles.word}>
 			{letters.map((char, index) => {
-				let status: LetterStatus = 'untyped'
+				let status: LetterStatus = 'untyped';
 
 				if (index < typedChars.length) {
-					status = typedChars[index] === char ? 'correct' : 'incorrect'
+					status = typedChars[index] === char ? 'correct' : 'incorrect';
 				}
 
 				return (
@@ -29,7 +29,7 @@ export const Word = memo(({ word, typedChars, caretPosition }: Props) => {
 						letter={char}
 						showCaret={index === caretPosition}
 					/>
-				)
+				);
 			})}
 		</div>
 	);
