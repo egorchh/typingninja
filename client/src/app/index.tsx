@@ -1,5 +1,4 @@
-import './styles/index.css'
-
+import './styles/index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Router } from './router';
 
@@ -8,7 +7,7 @@ function App() {
 		<BrowserRouter>
 			<Router />
 		</BrowserRouter>
-	)
+	);
 }
 
-export default App
+export default App;

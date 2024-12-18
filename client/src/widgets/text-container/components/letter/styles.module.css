@@ -1,0 +1,40 @@
+.letter {
+	letter-spacing: 1.5px;
+	position: relative;
+}
+
+.correct {
+    color: var(--default-theme-correct-word);
+}
+
+.incorrect {
+    color: var(--default-theme-incorrect-word);
+    text-decoration: underline;
+}
+
+.untyped {
+    color: var(--default-theme-text);
+}
+
+.withCaret::before {
+	content: '';
+	position: absolute;
+	left: -1px;
+	top: 0;
+	width: 2px;
+	height: 1.5em;
+	background-color: var(--default-theme-text);
+	animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

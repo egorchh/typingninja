@@ -6,16 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint src vite.config.ts",
+    "lint:fix": "eslint src vite.config.ts --fix",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^8.56.0",
     "@types/node": "^22.10.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -23,11 +25,12 @@
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.56.0",
+    "eslint-plugin-perfectionist": "^4.3.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^13.24.0",
     "typescript": "~5.6.2",
-    "typescript-eslint": "^8.18.0",
-    "vite": "^6.0.1"
+    "vite": "^6.0.1",
+    "vite-plugin-eslint": "^1.8.1",
+    "eslint-plugin-react": "^7.33.2"
   }
 }

@@ -1,0 +1,119 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es2020": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:react/recommended",
+		"plugin:react/jsx-runtime"
+	],
+	"ignorePatterns": [
+		"dist",
+		".eslintrc.json"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2020
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"react-refresh",
+		"perfectionist",
+		"react"
+	],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"rules": {
+		"indent": [
+			"error",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"comma-dangle": [
+			"error",
+			"never"
+		],
+		"object-curly-spacing": [
+			"error",
+			"always"
+		],
+		"react-refresh/only-export-components": [
+			"warn",
+			{
+				"allowConstantExport": true
+			}
+		],
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/no-explicit-any": "error",
+		"@typescript-eslint/no-unused-vars": "error",
+		"react/prop-types": "off",
+		"react/react-in-jsx-scope": "off",
+		"perfectionist/sort-imports": [
+			"error",
+			{
+				"type": "alphabetical",
+				"order": "asc",
+				"ignoreCase": true,
+				"newlinesBetween": "never",
+				"groups": [
+					"react",
+					"external",
+					"type",
+					"fsdPages",
+					"fsdWidgets",
+					"fsdShared",
+					"parent",
+					"sibling",
+					"style"
+				],
+				"customGroups": {
+					"value": {
+						"react": [
+							"^react$",
+							"^react-.+"
+						],
+						"fsdPages": [
+							"~pages"
+						],
+						"fsdWidgets": [
+							"~widgets"
+						],
+						"fsdShared": [
+							"~shared"
+						]
+					},
+					"type": {
+						"react": [
+							"^react$",
+							"^react-.+"
+						]
+					}
+				},
+				"environment": "node"
+			}
+		]
+	},
+	"overrides": [
+		{
+			"files": [
+				"vite.config.ts"
+			],
+			"parserOptions": {
+				"project": "./tsconfig.node.json"
+			}
+		}
+	]
+}
