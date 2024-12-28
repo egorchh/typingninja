@@ -19,7 +19,11 @@ export const Word = memo(({ word, typedChars, caretPosition }: Props) => {
 				let status: LetterStatus = 'untyped';
 
 				if (index < typedChars.length) {
-					status = typedChars[index] === char ? 'correct' : 'incorrect';
+					if (typedChars[index] === char) {
+						status = 'correct';
+					} else {
+						status = 'incorrect';
+					}
 				}
 
 				return (

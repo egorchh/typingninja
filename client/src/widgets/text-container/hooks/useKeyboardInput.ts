@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo, RefObject } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
-export const useKeyboardInput = (timerRef: RefObject<NodeJS.Timeout | null>) => {
+export const useKeyboardInput = () => {
+	const isAnyButtonWasPressed = useRef(false);
 	const [caretPosition, setCaretPosition] = useState<number>(0);
 	const [typedChars, setTypedChars] = useState<string[]>([]);
 
@@ -11,6 +12,10 @@ export const useKeyboardInput = (timerRef: RefObject<NodeJS.Timeout | null>) => 
 			}
 
 			if (event.key.length === 1) {
+				if (!isAnyButtonWasPressed.current) {
+					isAnyButtonWasPressed.current = true;
+				}
+				
 				setTypedChars(prev => [...prev, event.key]);
 				setCaretPosition(prev => prev + 1);
 			}
@@ -27,6 +32,7 @@ export const useKeyboardInput = (timerRef: RefObject<NodeJS.Timeout | null>) => 
 
 	return useMemo(() => ({
 		caretPosition,
-		typedChars
+		typedChars,
+		isAnyButtonWasPressed: isAnyButtonWasPressed.current
 	}), [caretPosition, typedChars]);
 }; 
