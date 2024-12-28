@@ -7,9 +7,9 @@ type Props = {
 	accuracy: number;
 }
 
-export const Stats = ({ totalTyped, correctChars, incorrectChars, accuracy }: Props) => {
+export const Statistics = ({ totalTyped, correctChars, incorrectChars, accuracy }: Props) => {
 	return (
-		<div className={styles.stats}>
+		<div className={styles.root}>
 			<div>Всего символов: {totalTyped}</div>
 			<div>Правильно: {correctChars}</div>
 			<div>Ошибок: {incorrectChars}</div>

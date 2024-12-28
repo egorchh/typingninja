@@ -72,9 +72,12 @@
 					"react",
 					"external",
 					"type",
-					"fsdPages",
-					"fsdWidgets",
-					"fsdShared",
+					"fsd-app",
+					"fsd-pages",
+					"fsd-widgets",
+					"fsd-features",
+					"fsd-entities",
+					"fsd-shared",
 					"parent",
 					"sibling",
 					"style"
@@ -85,13 +88,22 @@
 							"^react$",
 							"^react-.+"
 						],
-						"fsdPages": [
+						"fsd-app": [
+							"~app"
+						],
+						"fsd-pages": [
 							"~pages"
 						],
-						"fsdWidgets": [
+						"fsd-widgets": [
 							"~widgets"
 						],
-						"fsdShared": [
+						"fsd-features": [
+							"~features"
+						],
+						"fsd-entities": [
+							"~entities"
+						],
+						"fsd-shared": [
 							"~shared"
 						]
 					},
