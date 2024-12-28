@@ -24,15 +24,24 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "~shared/*": [
-        "src/shared/*"
+      "~app/*": [
+        "src/app/*"
+      ],
+      "~pages/*": [
+        "src/pages/*"
       ],
       "~widgets/*": [
         "src/widgets/*"
       ],
-      "~pages/*": [
-        "src/pages/*"
-      ]
+      "~features/*": [
+        "src/features/*"
+      ],
+      "~entities/*": [
+        "src/entities/*"
+      ],
+      "~shared/*": [
+        "src/shared/*"
+      ],
     }
   },
   "include": [

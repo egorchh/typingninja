@@ -11,7 +11,7 @@ export const Router = () => {
 		<Routes>
 			<Route path={AppRoutes.KeyboardPage} element={<Layout />}>
 				<Route index element={<KeyboardPage />} />
-				<Route path={AppRoutes.StatisticPage} element={<StatisticPage />} />
+				<Route path={AppRoutes.StatisticsPage} element={<StatisticPage />} />
 			</Route>
 		</Routes>
 	);

@@ -1,8 +1,12 @@
+import { Statistics } from "~entities/statistics";
+import { selectStatistics } from "~entities/statistics";
+import { useAppSelector } from "~shared/hooks";
+
 const StatisticPage = () => {
+	const statistics = useAppSelector(selectStatistics);
+
 	return (
-		<>
-			<h1>Statistic</h1>
-		</>
+		<Statistics {...statistics} />
 	);
 };
 

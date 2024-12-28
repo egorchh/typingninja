@@ -1,4 +1,4 @@
-.stats {
+.root {
 	display: flex;
 	gap: 20px;
 	font-size: var(--font-size-lg);

@@ -1,10 +1,13 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { setStatistics } from '~entities/statistics';
 import { Spacer } from '~shared/components';
 import { AppRoutes } from '~shared/constants/routes';
-import { Stats, Timer, Word } from './components';
+import { useAppDispatch } from '~shared/hooks';
+import { calculateTypingStatistics } from '~shared/utils';
+import { Timer, Word } from './components';
 import { useKeyboardInput, useTimer } from './hooks';
-import { splitTextIntoWords, calculateWordStarts, getWordParams, calculateTypingStatistic } from './utils';
+import { splitTextIntoWords, calculateWordStarts, getWordParams } from './utils';
 import styles from './styles.module.css';
 
 type Props = {
@@ -46,16 +49,18 @@ const Container = memo(({ text, typedChars, caretPosition }: { text: string; typ
 Container.displayName = 'Container';
 
 export const TextContainer = ({ text }: Props) => {
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const { caretPosition, typedChars, isAnyButtonWasPressed } = useKeyboardInput();
 
-	const stats = useMemo(() => {
-		return calculateTypingStatistic(typedChars, text);
+	const statistics = useMemo(() => {
+		return calculateTypingStatistics(typedChars, text);
 	}, [typedChars, text]);
 
 	const handleTimerExpired = useCallback(() => {
-		navigate(AppRoutes.StatisticPage);
-	}, [navigate]);
+		navigate(AppRoutes.StatisticsPage);
+		dispatch(setStatistics(statistics));
+	}, [navigate, statistics, dispatch]);
 
 	const { time } = useTimer({
 		isAnyButtonWasPressed,
@@ -65,7 +70,6 @@ export const TextContainer = ({ text }: Props) => {
 
 	return (
 		<Spacer className={styles.root} direction='column' gap='16'>
-			<Stats {...stats} />
 			<Timer time={time} position='top' />
 			<Container text={text} typedChars={typedChars} caretPosition={caretPosition} />
 		</Spacer>
