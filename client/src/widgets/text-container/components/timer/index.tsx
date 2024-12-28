@@ -1,4 +1,3 @@
-import { forwardRef } from 'react';
 import cn from 'classnames';
 import styles from './styles.module.css';
 
@@ -7,12 +6,10 @@ type Props = {
 	position?: 'top' | 'left';
 };
 
-export const Timer = forwardRef(({ time, position = 'left' }: Props, ref) => {
+export const Timer = ({ time, position = 'left' }: Props) => {
 	return (
 		<div className={cn(styles.root, styles[position])}>
-			{ref.current}
+			{time}
 		</div>
 	);
-});
-
-Timer.displayName = 'Timer';
+};
