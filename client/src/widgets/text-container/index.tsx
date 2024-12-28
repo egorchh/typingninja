@@ -1,5 +1,7 @@
 import { memo, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Spacer } from '~shared/components';
+import { AppRoutes } from '~shared/constants/routes';
 import { Stats, Timer, Word } from './components';
 import { useKeyboardInput, useTimer } from './hooks';
 import { splitTextIntoWords, calculateWordStarts, getWordParams, calculateTypingStatistic } from './utils';
@@ -9,7 +11,7 @@ type Props = {
 	text: string;
 }
 
-const TIMER_TIME = 30000;
+const TIMER_TIME = 5000;
 
 const Container = memo(({ text, typedChars, caretPosition }: { text: string; typedChars: string[], caretPosition: number }) => {
 	const { words, wordStarts } = useMemo(() => {
@@ -44,6 +46,7 @@ const Container = memo(({ text, typedChars, caretPosition }: { text: string; typ
 Container.displayName = 'Container';
 
 export const TextContainer = ({ text }: Props) => {
+	const navigate = useNavigate();
 	const { caretPosition, typedChars, isAnyButtonWasPressed } = useKeyboardInput();
 
 	const stats = useMemo(() => {
@@ -51,8 +54,8 @@ export const TextContainer = ({ text }: Props) => {
 	}, [typedChars, text]);
 
 	const handleTimerExpired = useCallback(() => {
-		console.log('Typing stats:', stats);
-	}, [stats]);
+		navigate(AppRoutes.StatisticPage);
+	}, [navigate]);
 
 	const { time } = useTimer({
 		isAnyButtonWasPressed,
