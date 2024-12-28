@@ -1,8 +1,8 @@
 import { memo, useCallback, useMemo } from 'react';
 import { Spacer } from '~shared/components';
-import { Timer, Word } from './components';
+import { Stats, Timer, Word } from './components';
 import { useKeyboardInput, useTimer } from './hooks';
-import { splitTextIntoWords, calculateWordStarts, getWordParams } from './utils';
+import { splitTextIntoWords, calculateWordStarts, getWordParams, calculateTypingStatistic } from './utils';
 import styles from './styles.module.css';
 
 type Props = {
@@ -46,14 +46,23 @@ Container.displayName = 'Container';
 export const TextContainer = ({ text }: Props) => {
 	const { caretPosition, typedChars, isAnyButtonWasPressed } = useKeyboardInput();
 
+	const stats = useMemo(() => {
+		return calculateTypingStatistic(typedChars, text);
+	}, [typedChars, text]);
+
 	const handleTimerExpired = useCallback(() => {
+		console.log('Typing stats:', stats);
+	}, [stats]);
 
-	}, []);
-
-	const { time } = useTimer({ isAnyButtonWasPressed, defaultTime: TIMER_TIME, onTimerExpiredCallback: handleTimerExpired });
+	const { time } = useTimer({
+		isAnyButtonWasPressed,
+		defaultTime: TIMER_TIME,
+		onTimerExpiredCallback: handleTimerExpired
+	});
 
 	return (
 		<Spacer className={styles.root} direction='column' gap='16'>
+			<Stats {...stats} />
 			<Timer time={time} position='top' />
 			<Container text={text} typedChars={typedChars} caretPosition={caretPosition} />
 		</Spacer>
