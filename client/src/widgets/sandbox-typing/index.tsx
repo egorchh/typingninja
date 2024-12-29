@@ -1,11 +1,12 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setStatistics } from '~entities/statistics';
+import { selectTimeInMilliseconds, Timer } from '~entities/timer';
 import { Spacer } from '~shared/components';
 import { AppRoutes } from '~shared/constants/routes';
-import { useAppDispatch } from '~shared/hooks';
+import { useAppDispatch, useAppSelector } from '~shared/hooks';
 import { calculateTypingStatistics } from '~shared/utils';
-import { Timer, Word } from './components';
+import { Word } from './components';
 import { useKeyboardInput, useTimer } from './hooks';
 import { splitTextIntoWords, calculateWordStarts, getWordParams } from './utils';
 import styles from './styles.module.css';
@@ -13,8 +14,6 @@ import styles from './styles.module.css';
 type Props = {
 	text: string;
 }
-
-const TIMER_TIME = 5000;
 
 const Container = memo(({ text, typedChars, caretPosition }: { text: string; typedChars: string[], caretPosition: number }) => {
 	const { words, wordStarts } = useMemo(() => {
@@ -48,7 +47,8 @@ const Container = memo(({ text, typedChars, caretPosition }: { text: string; typ
 
 Container.displayName = 'Container';
 
-export const TextContainer = ({ text }: Props) => {
+export const SandboxTyping = ({ text }: Props) => {
+	const timeInMilliseconds = useAppSelector(selectTimeInMilliseconds);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const { caretPosition, typedChars, isAnyButtonWasPressed } = useKeyboardInput();
@@ -64,12 +64,12 @@ export const TextContainer = ({ text }: Props) => {
 
 	const { time } = useTimer({
 		isAnyButtonWasPressed,
-		defaultTime: TIMER_TIME,
+		defaultTime: timeInMilliseconds,
 		onTimerExpiredCallback: handleTimerExpired
 	});
 
 	return (
-		<Spacer className={styles.root} direction='column' gap='16'>
+		<Spacer className={styles.textContainer}>
 			<Timer time={time} position='top' />
 			<Container text={text} typedChars={typedChars} caretPosition={caretPosition} />
 		</Spacer>

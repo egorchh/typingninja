@@ -1,4 +1,4 @@
 export enum AppRoutes {
-	KeyboardPage = '/',
+	SandboxPage = '/',
 	StatisticsPage = '/statistics',
 }
