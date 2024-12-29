@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Props = {
 	// Default timer value in milliseconds
@@ -12,6 +12,14 @@ const INTERVAL_TIME = 1000;
 export const useTimer = ({ defaultTime, isAnyButtonWasPressed, onTimerExpiredCallback }: Props) => {
 	const timerRef = useRef<NodeJS.Timeout | null>();
 	const [time, setTime] = useState<number>(() => defaultTime / 1000);
+
+	const updateDefaultTime = useCallback(() => {
+		setTime(defaultTime / 1000);
+	}, [defaultTime]);
+
+	useEffect(() => {
+		updateDefaultTime();
+	}, [updateDefaultTime]);
 
 	useEffect(() => {
 		if (isAnyButtonWasPressed) {
