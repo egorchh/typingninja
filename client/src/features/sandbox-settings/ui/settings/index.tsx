@@ -16,7 +16,7 @@ export const SandboxSettings = () => {
 		activeSandboxSettingsMode === SandboxSettingsMode.Words;
 
 	return (
-		<Spacer className={styles.content} gap='16' justify='center'>
+		<Spacer className={styles.root} gap='16' justify='center'>
 			<Spacer gap='8'>
 				{sandboxSettingsModes.map(mode => {
 					const active = mode === activeSandboxSettingsMode;

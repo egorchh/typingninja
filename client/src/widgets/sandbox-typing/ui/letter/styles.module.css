@@ -4,16 +4,16 @@
 }
 
 .correct {
-    color: var(--default-theme-correct-word);
+	color: var(--default-theme-correct-word);
 }
 
 .incorrect {
-    color: var(--default-theme-incorrect-word);
+	color: var(--default-theme-incorrect-word);
     text-decoration: underline;
 }
 
 .untyped {
-    color: var(--default-theme-text);
+	color: var(--default-theme-text);
 }
 
 .withCaret::before {

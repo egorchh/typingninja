@@ -1,12 +1,25 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 
-export const useKeyboardInput = () => {
+type Props = {
+	isTextContainerBlur: boolean,
+	onTextContainerFocus: VoidFunction;
+};
+
+export const useKeyboardInput = ({ 
+	isTextContainerBlur, 
+	onTextContainerFocus
+}: Props) => {
 	const isAnyButtonWasPressed = useRef(false);
 	const [caretPosition, setCaretPosition] = useState<number>(0);
 	const [typedChars, setTypedChars] = useState<string[]>([]);
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
+			if (isTextContainerBlur) {
+				onTextContainerFocus();
+				return;
+			}
+
 			if (event.ctrlKey || event.altKey || event.metaKey) {
 				return;
 			}
@@ -28,7 +41,7 @@ export const useKeyboardInput = () => {
 
 		window.addEventListener('keydown', handleKeyDown);
 		return () => window.removeEventListener('keydown', handleKeyDown);
-	}, [caretPosition]);
+	}, [caretPosition, isTextContainerBlur, onTextContainerFocus]);
 
 	return useMemo(() => ({
 		caretPosition,

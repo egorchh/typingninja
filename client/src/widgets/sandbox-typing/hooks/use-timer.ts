@@ -3,13 +3,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 type Props = {
 	// Default time value in milliseconds
 	defaultTime: number;
+	isTextContainerBlur: boolean;
 	isAnyButtonWasPressed: boolean;
 	onTimerExpiredCallback: VoidFunction;
 };
 
 const INTERVAL_TIME = 1000;
 
-export const useTimer = ({ defaultTime, isAnyButtonWasPressed, onTimerExpiredCallback }: Props) => {
+export const useTimer = ({ defaultTime, isAnyButtonWasPressed, isTextContainerBlur, onTimerExpiredCallback }: Props) => {
 	const timerRef = useRef<NodeJS.Timeout | null>();
 	const [time, setTime] = useState<number>(() => defaultTime / 1000);
 
@@ -24,7 +25,9 @@ export const useTimer = ({ defaultTime, isAnyButtonWasPressed, onTimerExpiredCal
 	useEffect(() => {
 		if (isAnyButtonWasPressed) {
 			timerRef.current = setInterval(() => {
-				setTime((time) => time - 1);
+				if (!isTextContainerBlur) {
+					setTime((time) => time - 1);
+				}
 			}, INTERVAL_TIME);
 
 			return () => {
@@ -33,7 +36,7 @@ export const useTimer = ({ defaultTime, isAnyButtonWasPressed, onTimerExpiredCal
 				}
 			};
 		}
-	}, [isAnyButtonWasPressed, defaultTime]);
+	}, [isAnyButtonWasPressed, defaultTime, isTextContainerBlur]);
 
 	useEffect(() => {
 		if (time === 0 && timerRef.current) {
@@ -42,7 +45,5 @@ export const useTimer = ({ defaultTime, isAnyButtonWasPressed, onTimerExpiredCal
 		}
 	}, [time, onTimerExpiredCallback]);
 
-	return {
-		time
-	};
+	return time;
 };

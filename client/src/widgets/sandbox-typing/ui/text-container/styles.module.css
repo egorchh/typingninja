@@ -1,0 +1,16 @@
+.root {
+	max-width: 1200px;
+	text-align: left;
+	font-size: var(--font-size-3xl);
+	font-weight: var(--font-weight-bold);
+	user-select: none;
+}
+
+.root:focus {
+	outline: none;
+}
+
+.blured {
+	transition: .2s;
+	filter: blur(8px) saturate(0);
+}

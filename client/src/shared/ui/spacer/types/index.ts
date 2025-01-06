@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 
 type FlexJustify = 'center' | 'start' | 'end' | 'between' | 'evenly' | 'around';
 type FlexAlign = 'center' | 'start' | 'end';
@@ -20,4 +20,4 @@ export type SpacerProps = {
 	wrap?: FlexWrap;
 	fullHeight?: boolean;
 	fullWidth?: boolean;
-};
+} & ComponentProps<'div'>;

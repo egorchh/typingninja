@@ -1,13 +1,15 @@
-.textContainer {
+.root {
 	position: relative;
 }
 
-.text {
-	display: flex;
-	flex-wrap: wrap;
-	font-size: var(--font-size-3xl);
-	font-weight: var(--font-weight-bold);
-	text-align: left;
-	max-width: 1200px;
+.rootBlur {
+	outline: 2px solid var(--default-theme-background-light);
+	outline-offset: 1.75em;
+	border-radius: 18px;
 }
 
+.contentBlur {
+	transition: .15s;
+	opacity: .25;
+	filter: blur(8px) saturate(0);
+}

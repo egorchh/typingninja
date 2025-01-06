@@ -1,7 +1,8 @@
-.content {
+.root {
 	padding: 8px 15px;
 	border-radius: 10px;
 	background-color: var(--default-theme-background-light);
+	user-select: none;
 }
 
 .verticalSeparator {
