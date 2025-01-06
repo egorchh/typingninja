@@ -1,14 +1,19 @@
 import { SandboxSettingsMode } from '~features/sandbox-settings/types';
 import { useAppSelector } from '~shared/hooks';
 import { Spacer } from '~shared/ui';
-import { sandboxSettingsModes, timeModeValues, wordsModeValues } from '../../constants';
+import { sandboxSettingsModes } from '../../constants';
 import { selectSandboxSettings } from '../../model';
+import { getSettingsModeValues } from '../../utils/get-settings-mode-values';
 import { SettingsMode } from '../settings-mode';
 import { SettingsModeValue } from '../settings-mode-value';
 import styles from './styles.module.css';
 
 export const SandboxSettings = () => {
 	const { mode: activeSandboxSettingsMode, value: activeSandboxSettingsValue } = useAppSelector(selectSandboxSettings);
+
+	const isActiveModeHasValues =
+		activeSandboxSettingsMode === SandboxSettingsMode.Time ||
+		activeSandboxSettingsMode === SandboxSettingsMode.Words;
 
 	return (
 		<Spacer className={styles.content} gap='16' justify='center'>
@@ -21,28 +26,19 @@ export const SandboxSettings = () => {
 					);
 				})}
 			</Spacer>
-			<p>|</p>
-			{activeSandboxSettingsMode === SandboxSettingsMode.Time && (
-				<Spacer gap='8'>
-					{timeModeValues.map(value => {
-						const active = value === activeSandboxSettingsValue;
+			{isActiveModeHasValues && (
+				<>
+					<div className={styles.verticalSeparator} />
+					<Spacer gap='8'>
+						{getSettingsModeValues(activeSandboxSettingsMode).map(value => {
+							const active = value === activeSandboxSettingsValue;
 
-						return (
-							<SettingsModeValue key={value} value={value} active={active} />
-						);
-					})}
-				</Spacer>
-			)}
-			{activeSandboxSettingsMode === SandboxSettingsMode.Words && (
-				<Spacer gap='8'>
-					{wordsModeValues.map(value => {
-						const active = value === activeSandboxSettingsValue;
-
-						return (
-							<SettingsModeValue key={value} value={value} active={active} />
-						);
-					})}
-				</Spacer>
+							return (
+								<SettingsModeValue key={value} value={value} active={active} />
+							);
+						})}
+					</Spacer>
+				</>
 			)}
 		</Spacer>
 	);

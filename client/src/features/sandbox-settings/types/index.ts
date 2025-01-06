@@ -2,7 +2,8 @@ import { TimeValueType } from "~entities/timer";
 
 export const SandboxSettingsMode = {
 	Time: 'time',
-	Words: 'words'
+	Words: 'words',
+	OtherTest: 'other-test'
 } as const;
 
 export type SandboxSettingsModeType = typeof SandboxSettingsMode[keyof typeof SandboxSettingsMode];

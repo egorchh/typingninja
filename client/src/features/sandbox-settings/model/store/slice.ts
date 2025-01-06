@@ -4,7 +4,8 @@ import {
 	SandboxSettingsMode,
 	SandboxSettingsState,
 	SandboxSettingsModeType, 
-	WordsValueType
+	WordsValueType,
+	WordsValue
 } from '../../types';
 
 const initialState: SandboxSettingsState = {
@@ -18,6 +19,18 @@ export const sandboxSettingsSlice = createSlice({
 	reducers: {
 		setSandboxSettingsMode: (state, action: PayloadAction<SandboxSettingsModeType>) => {
 			state.mode = action.payload;
+
+			switch (action.payload) {
+				case SandboxSettingsMode.Time:
+					state.value = TimeValues[30];
+					break;
+				case SandboxSettingsMode.Words:
+					state.value = WordsValue[25];
+					break;
+				default:
+					state.value = TimeValues[30];
+					break;
+			} 
 		},
 		setSandboxSettingsValue: (state, action: PayloadAction<TimeValueType | WordsValueType>) => {
 			state.value = action.payload;

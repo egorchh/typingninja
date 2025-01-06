@@ -10,3 +10,14 @@
 .active {
 	color: var(--default-theme-text-accent)
 }
+
+.customIcon {
+	height: 19px;
+	width: 19px;
+	margin-top: 1px;
+	fill: currentColor;
+}
+
+.activeIcon {
+	fill: var(--default-theme-text-accent);
+}

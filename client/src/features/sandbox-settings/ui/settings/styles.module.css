@@ -4,6 +4,13 @@
 	background-color: var(--default-theme-background-light);
 }
 
+.verticalSeparator {
+	height: 100%;
+	width: 4px;
+	background-color: var(--default-theme-background);
+	border-radius: 4px;
+}
+
 .icon {
 	width: 30px;
 	height: 30px;
