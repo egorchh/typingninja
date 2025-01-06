@@ -1,0 +1,12 @@
+.root {
+	transition: 0.1s ease-in-out;
+	cursor: pointer;
+}
+
+.root:hover {
+	color: var(--default-theme-text-accent)
+}
+
+.active {
+	color: var(--default-theme-text-accent)
+}

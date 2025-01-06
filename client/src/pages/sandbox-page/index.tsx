@@ -1,6 +1,6 @@
 import { SandboxTyping } from '~widgets/sandbox-typing';
 import { SandboxSettings } from '~features/sandbox-settings';
-import { Spacer } from '~shared/components';
+import { Spacer } from '~shared/ui';
 import { mockText } from '../../mocks/text';
 import styles from './styles.module.css';
 

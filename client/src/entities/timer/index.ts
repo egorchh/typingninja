@@ -1,2 +1,2 @@
-export { timerReducer, setTimerMode, selectTimerMode, selectTimeInMilliseconds } from './model';
 export { Timer } from './ui';
+export { TimeValues, type TimeValueType } from './types';

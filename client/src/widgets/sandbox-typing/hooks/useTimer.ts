@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type Props = {
-	// Default timer value in milliseconds
+	// Default time value in milliseconds
 	defaultTime: number;
 	isAnyButtonWasPressed: boolean;
 	onTimerExpiredCallback: VoidFunction;

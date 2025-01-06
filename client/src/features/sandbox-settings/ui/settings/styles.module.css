@@ -1,6 +1,10 @@
-.root {
-	width: 100%;
+.content {
 	padding: 8px 15px;
 	border-radius: 10px;
 	background-color: var(--default-theme-background-light);
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
 }
