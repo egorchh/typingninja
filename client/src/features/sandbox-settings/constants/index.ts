@@ -1,3 +1,8 @@
-import { TimerMode } from "~entities/timer/types";
+import { TimeValueType } from "~entities/timer";
+import { TimeValues } from "~entities/timer/types";
+import { SandboxSettingsMode, SandboxSettingsModeType, WordsValue, WordsValueType } from "../types";
 
-export const timerModes: TimerMode[] = [15, 30, 60, 120];
+export const sandboxSettingsModes: SandboxSettingsModeType[] = [SandboxSettingsMode.Time, SandboxSettingsMode.Words];
+
+export const timeModeValues: TimeValueType[] = [TimeValues[15], TimeValues[30], TimeValues[60], TimeValues[120], TimeValues.custom];
+export const wordsModeValues: WordsValueType[] = [WordsValue[10], WordsValue[25], WordsValue[50], WordsValue[100], WordsValue.custom];

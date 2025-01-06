@@ -1,10 +1,11 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { selectSandboxSettingsTimeInMilliseconds } from '~features/sandbox-settings';
 import { setStatistics } from '~entities/statistics';
-import { selectTimeInMilliseconds, Timer } from '~entities/timer';
-import { Spacer } from '~shared/components';
+import { Timer } from '~entities/timer';
 import { AppRoutes } from '~shared/constants/routes';
 import { useAppDispatch, useAppSelector } from '~shared/hooks';
+import { Spacer } from '~shared/ui';
 import { calculateTypingStatistics } from '~shared/utils';
 import { Word } from './components';
 import { useKeyboardInput, useTimer } from './hooks';
@@ -48,7 +49,7 @@ const Container = memo(({ text, typedChars, caretPosition }: { text: string; typ
 Container.displayName = 'Container';
 
 export const SandboxTyping = ({ text }: Props) => {
-	const timeInMilliseconds = useAppSelector(selectTimeInMilliseconds);
+	const timeInMilliseconds = useAppSelector(selectSandboxSettingsTimeInMilliseconds);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const { caretPosition, typedChars, isAnyButtonWasPressed } = useKeyboardInput();
