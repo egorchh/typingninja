@@ -9,7 +9,8 @@
     "lint": "eslint src vite.config.ts",
     "lint:fix": "eslint src vite.config.ts --fix",
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
@@ -32,6 +33,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "husky": "^9.1.7",
     "typescript": "~5.6.2",
     "vite": "^6.0.1",
     "vite-plugin-eslint": "^1.8.1"
