@@ -53,7 +53,7 @@ const SpacerComponent = forwardRef((props: SpacerProps, ref) => {
 	};
 
 	return (
-		<div className={cn(styles.flex, mods, classes)} {...otherProps} ref={ref as LegacyRef<HTMLDivElement>}>
+		<div className={cn(styles.flex, mods, classes)} ref={ref as LegacyRef<HTMLDivElement>} {...otherProps}>
 			{children}
 		</div>
 	);

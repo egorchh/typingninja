@@ -1,2 +1,2 @@
-export { Timer } from './ui';
+export { Timer } from './ui/timer';
 export { TimeValues, type TimeValueType } from './types';

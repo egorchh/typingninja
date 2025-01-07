@@ -1,7 +1,15 @@
-.content {
+.root {
 	padding: 8px 15px;
 	border-radius: 10px;
 	background-color: var(--default-theme-background-light);
+	user-select: none;
+}
+
+.verticalSeparator {
+	height: 100%;
+	width: 4px;
+	background-color: var(--default-theme-background);
+	border-radius: 4px;
 }
 
 .icon {
