@@ -11,9 +11,11 @@ type Props = {
 
 export const Letter = memo(({ letter, status = 'untyped', showCaret = false }: Props) => {
 	return (
-		<span className={cn(styles.letter, styles[status], {
-			[styles.withCaret]: showCaret
-		})}>
+		<span
+			aria-label={`Letter ${letter} is ${status}`}
+			className={cn(styles.letter, styles[status], {
+				[styles.withCaret]: showCaret
+			})}>
 			{letter}
 		</span>
 	);

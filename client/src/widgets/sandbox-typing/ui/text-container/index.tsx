@@ -5,7 +5,7 @@ import {
 	getWordParams,
 	splitTextIntoWords
 } from "../../utils";
-import { Word } from "../word";
+import { Word } from "../word/ui";
 import styles from './styles.module.css';
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const TextContainer = memo(
-	forwardRef<HTMLDivElement, Props>(({ text, typedChars, caretPosition, onFocus, onBlur }: Props, ref) => {
+	forwardRef<HTMLDivElement, Props>(({ text, typedChars, caretPosition, onFocus, onBlur }, ref) => {
 		const { words, wordStarts } = useMemo(() => {
 			const words = splitTextIntoWords(text);
 			const wordStarts = calculateWordStarts(words);

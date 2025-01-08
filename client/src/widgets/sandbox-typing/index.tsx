@@ -1,16 +1,11 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { selectSandboxSettingsTimeInMilliseconds } from '~features/sandbox-settings';
-import { setStatistics } from '~entities/statistics';
-import { Timer } from '~entities/timer';
-import { AppRoutes } from '~shared/constants/routes';
-import { useAppDispatch, useAppSelector } from '~shared/hooks';
-import { Spacer } from '~shared/ui';
-import { calculateTypingStatistics } from '~shared/utils';
+import { selectSandboxSettingsMode } from '~features/sandbox-settings';
+import { SandboxSettingsMode } from '~features/sandbox-settings/types';
+import { useAppSelector } from '~shared/hooks';
 import { TEXT_CONTAINER_BLUR_TIMEOUT } from './constants';
-import { useKeyboardInput, useTimer } from './hooks';
-import { BlurSlug, TextContainer } from './ui';
+import { TimeModeLayout, WordsModeLayout } from './modes';
+import { BlurSlug } from './ui';
 import styles from './styles.module.css';
 
 type Props = {
@@ -21,9 +16,7 @@ export const SandboxTyping = ({ text }: Props) => {
 	const textContainerRef = useRef<HTMLDivElement | null>(null);
 	const blurTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const [isTextContainerBlur, setIsTextContainerBlur] = useState(false);
-	const timeInMilliseconds = useAppSelector(selectSandboxSettingsTimeInMilliseconds);
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+	const settingsMode = useAppSelector(selectSandboxSettingsMode);
 
 	const handleTextContainerBlur = useCallback(() => {
 		blurTimeoutRef.current = setTimeout(() => {
@@ -40,45 +33,24 @@ export const SandboxTyping = ({ text }: Props) => {
 		setIsTextContainerBlur(false);
 	}, []);
 
-	const { caretPosition, typedChars, isAnyButtonWasPressed } = useKeyboardInput({
-		isTextContainerBlur,
-		onTextContainerFocus: handleTextContainerFocus
-	});
-
-	const statistics = useMemo(() => {
-		return calculateTypingStatistics(typedChars, text);
-	}, [typedChars, text]);
-
-	const handleTimerExpired = useCallback(() => {
-		dispatch(setStatistics(statistics));
-		navigate(AppRoutes.StatisticsPage);
-	}, [navigate, statistics, dispatch]);
-
-	const timeInSeconds = useTimer({
-		isTextContainerBlur,
-		isAnyButtonWasPressed,
-		defaultTime: timeInMilliseconds,
-		onTimerExpiredCallback: handleTimerExpired
-	});
-
 	return (
 		<div className={classNames(styles.root, { [styles.rootBlur]: isTextContainerBlur })}>
 			{isTextContainerBlur && (
 				<BlurSlug />
 			)}
-			<Spacer className={classNames({ [styles.contentBlur]: isTextContainerBlur })}>
-				{!isTextContainerBlur && (
-					<Timer time={timeInSeconds} position='top' />
-				)}
-				<TextContainer
-					ref={textContainerRef}
+			{settingsMode === SandboxSettingsMode.Time ? (
+				<TimeModeLayout
 					text={text}
-					typedChars={typedChars}
-					caretPosition={caretPosition}
-					onFocus={handleTextContainerFocus}
-					onBlur={handleTextContainerBlur}
-				/>
-			</Spacer>
+					isTextContainerBlur={isTextContainerBlur}
+					onTextContainerFocus={handleTextContainerFocus}
+					onTextContainerBlur={handleTextContainerBlur} />
+			) : (
+				<WordsModeLayout
+					text={text}
+					isTextContainerBlur={isTextContainerBlur}
+					onTextContainerFocus={handleTextContainerFocus}
+					onTextContainerBlur={handleTextContainerBlur} />
+			)}
 		</div>
 	);
 };

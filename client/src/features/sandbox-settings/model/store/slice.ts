@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TimeValues, TimeValueType } from '~entities/timer';
+import { TimeValues, TimeValueType } from '~entities/mode-counter';
 import {
 	SandboxSettingsMode,
 	SandboxSettingsState,

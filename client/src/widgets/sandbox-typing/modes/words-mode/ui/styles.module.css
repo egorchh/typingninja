@@ -1,0 +1,5 @@
+.contentBlur {
+	transition: .15s;
+	opacity: .25;
+	filter: blur(8px) saturate(0);
+}

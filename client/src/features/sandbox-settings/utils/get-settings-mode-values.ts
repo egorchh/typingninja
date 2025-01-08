@@ -1,4 +1,4 @@
-import { TimeValueType } from "~entities/timer";
+import { TimeValueType } from "~entities/mode-counter";
 import { timeModeValues, wordsModeValues } from "../constants";
 import { 
 	SandboxSettingsMode, 

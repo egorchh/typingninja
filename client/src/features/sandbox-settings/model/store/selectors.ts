@@ -1,4 +1,4 @@
-import { TimeValues, TimeValueType } from "~entities/timer";
+import { TimeValues, TimeValueType } from "~entities/mode-counter";
 import { RootState } from "~shared/types";
 import { WordsValueType } from "../../types";
 

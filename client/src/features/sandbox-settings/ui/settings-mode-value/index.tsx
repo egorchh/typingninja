@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { TimeValueType } from "~entities/timer";
+import { TimeValueType } from "~entities/mode-counter";
 import { useAppDispatch } from "~shared/hooks";
 import EditIcon from '../../assets/edit-icon.svg?react';
 import { setSandboxSettingsValue } from "../../model";

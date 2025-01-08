@@ -1,34 +1,21 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { INTERVAL_TIME_VALUE_IN_MILLISECONDS } from "../constants";
 
 type Props = {
-	// Default time value in milliseconds
-	defaultTime: number;
-	isTextContainerBlur: boolean;
-	isAnyButtonWasPressed: boolean;
-	onTimerExpiredCallback: VoidFunction;
+	start: boolean;
+	end: boolean;
+	interval?: number;
 };
 
-const INTERVAL_TIME = 1000;
-
-export const useTimer = ({ defaultTime, isAnyButtonWasPressed, isTextContainerBlur, onTimerExpiredCallback }: Props) => {
+export const useTimer = ({ start, end, interval = INTERVAL_TIME_VALUE_IN_MILLISECONDS }: Props) => {
 	const timerRef = useRef<NodeJS.Timeout | null>();
-	const [time, setTime] = useState<number>(() => defaultTime / 1000);
-
-	const updateDefaultTime = useCallback(() => {
-		setTime(defaultTime / 1000);
-	}, [defaultTime]);
+	const [elapsedTime, setElapsedTime] = useState<number>(0);
 
 	useEffect(() => {
-		updateDefaultTime();
-	}, [updateDefaultTime]);
-
-	useEffect(() => {
-		if (isAnyButtonWasPressed) {
+		if (start) {
 			timerRef.current = setInterval(() => {
-				if (!isTextContainerBlur) {
-					setTime((time) => time - 1);
-				}
-			}, INTERVAL_TIME);
+				setElapsedTime((prev) => prev + 1);
+			}, interval);
 
 			return () => {
 				if (timerRef.current) {
@@ -36,14 +23,13 @@ export const useTimer = ({ defaultTime, isAnyButtonWasPressed, isTextContainerBl
 				}
 			};
 		}
-	}, [isAnyButtonWasPressed, defaultTime, isTextContainerBlur]);
+	}, [start, interval]);
 
 	useEffect(() => {
-		if (time === 0 && timerRef.current) {
+		if (end && timerRef.current) {
 			clearTimeout(timerRef.current);
-			onTimerExpiredCallback();
 		}
-	}, [time, onTimerExpiredCallback]);
+	}, [end]);
 
-	return time;
+	return elapsedTime;
 };

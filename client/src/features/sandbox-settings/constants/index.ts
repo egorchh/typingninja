@@ -1,5 +1,5 @@
-import { TimeValueType } from "~entities/timer";
-import { TimeValues } from "~entities/timer/types";
+import { TimeValueType } from "~entities/mode-counter";
+import { TimeValues } from "~entities/mode-counter/types";
 import { SandboxSettingsMode, SandboxSettingsModeType, WordsValue, WordsValueType } from "../types";
 
 export const sandboxSettingsModes: SandboxSettingsModeType[] = [

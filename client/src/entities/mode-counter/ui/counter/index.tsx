@@ -2,14 +2,14 @@ import cn from 'classnames';
 import styles from './styles.module.css';
 
 type Props = {
-	time: number;
+	value: number | string;
 	position?: 'top' | 'left';
 };
 
-export const Timer = ({ time, position = 'left' }: Props) => {
+export const ModeCounter = ({ value, position = 'left' }: Props) => {
 	return (
 		<div className={cn(styles.root, styles[position])}>
-			{time}
+			{value}
 		</div>
 	);
 };
